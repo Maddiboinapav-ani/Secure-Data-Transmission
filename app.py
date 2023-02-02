@@ -143,6 +143,17 @@ def alterdata():
 
     return render_template('alter.html',dashboard_data=data,l=len(data))
 
+@app.route('/alterform',methods=['GET','POST'])
+def alterform():
+    dataid=request.form['dataid']
+    msg=request.form['msg']
+    print(dataid,msg)
+    h=hashlib.sha1()
+    h.update(msg.encode('utf-8'))
+    newhash=h.hexdigest()
+    c_data.update_one({'_id':str(dataid)},{"$set":{"data":msg,"hash":newhash}})
+    return render_template('alter.html',res='Data altered')
+
 
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=5000,debug=True)
