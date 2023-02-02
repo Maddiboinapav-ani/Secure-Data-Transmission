@@ -28,7 +28,7 @@ body {
 .container {
     width: 1000px;
     height: var(--container-height);
-    margin-left: -350px;
+    margin-left: -150px;
     margin-top: -200px;
     top: 50%;
     left: 50%;
