@@ -1,5 +1,8 @@
 from flask import Flask,render_template,redirect,request,session
 from pymongo import MongoClient
+import hashlib
+
+h=hashlib.sha1()
 
 client=MongoClient('localhost',27017)
 db=client['B2']
@@ -68,6 +71,19 @@ def loginform():
             # return render_template('index.html',res4='valid login')
     return render_template('index.html',res3='Invalid login')
 
-    
+@app.route('/senderform',methods=['post','get'])
+def senderform():
+    data=request.form['data']
+    receiver=request.form['receiver']
+    print(data,receiver)
+    k={}
+    k['username']=session['username']
+    k['receiver']=receiver
+    k['data']=data
+    h.update(data)
+    k['hash']=h.hexdigest()
+    c_data.insert_one(k)
+    return (render_template('sender.html',res='Data Sent and hash code - '+str(k['hash'])))
+
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=5000,debug=True)
