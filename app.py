@@ -82,6 +82,11 @@ def senderform():
     k['data']=data
     h.update(data.encode('utf-8'))
     k['hash']=h.hexdigest()
+    read_data_hash=c_data.find()
+    for i in read_data_hash:
+        if(k['hash']==i['hash'] and i['sender']==k['username'] and i['receiver']==k['receiver']):
+            return (render_template('sender.html',dashboard_data=data,l=len(data),res1='You have already sent'))
+
     c_data.insert_one(k)
     data=[]
     read_data_register=c_register.find()
