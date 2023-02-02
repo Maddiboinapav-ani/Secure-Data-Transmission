@@ -39,6 +39,21 @@ def logoutpage():
     session['username']=None
     return redirect('/')
 
+@app.route('/sent')
+def sentpage():
+    username=session['username']
+    data=[]
+    read_data_hash=c_data.find()
+    for i in read_data_hash:
+        if(i['username']==username):
+            dummy=[]
+            dummy.append(i['receiver'])
+            dummy.append(i['data'])
+            dummy.append(i['hash'])
+            data.append(dummy)
+
+    return render_template('sent.html',dashboard_data=data,l=len(data))
+
 @app.route('/signupform',methods=['post','get'])
 def signupform():
     username=request.form['username']
