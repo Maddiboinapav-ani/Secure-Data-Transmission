@@ -83,7 +83,14 @@ def senderform():
     h.update(data.encode('utf-8'))
     k['hash']=h.hexdigest()
     c_data.insert_one(k)
-    return (render_template('sender.html',res='Data Sent and hash code - '+str(k['hash'])))
+    data=[]
+    read_data_register=c_register.find()
+    for i in read_data_register:
+        dummy=[]
+        if i['username']!=session['username']:
+            dummy.append(i['username'])
+            data.append(i['username'])
+    return (render_template('sender.html',dashboard_data=data,l=len(data),res='Data Sent and hash code - '+str(k['hash'])))
 
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=5000,debug=True)
