@@ -25,7 +25,8 @@
             <article>
                 <div class="content">
                     <form action="/senderform" method="post">
-                        <label for="chk" aria-hidden="true">Send Data</label>
+                        <center><h1>Send Data</h1></center> <br/>
+
                         <div class="form-group">
                             <input type="text" name="data" placeholder="Enter Data" required="">
                         </div>
@@ -33,7 +34,7 @@
                         <div class="form-group">
                         <select class="form-control" id="receiver" name='receiver' required="">
                             {%for i in range(0, l)%}
-                            <option>{{dashboard_data[i][0]}}</option>
+                            <option>{{dashboard_data[i]}}</option>
                             {%endfor%}
                         </select>
                         </div>
