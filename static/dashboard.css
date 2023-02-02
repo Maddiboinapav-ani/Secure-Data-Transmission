@@ -26,7 +26,7 @@ body {
 
 
 .container {
-    width: var(--container-width);
+    width: 1000px;
     height: var(--container-height);
     margin-left: -350px;
     margin-top: -200px;
