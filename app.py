@@ -135,7 +135,7 @@ def alterdata():
     read_data_hash=c_data.find()
     for i in read_data_hash:
         data.append(i)
-    return data
+    return str(data)
 
 
 if __name__=="__main__":
