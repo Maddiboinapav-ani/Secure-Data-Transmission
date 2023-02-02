@@ -152,7 +152,7 @@ def alterform():
     h=hashlib.sha1()
     h.update(msg.encode('utf-8'))
     newhash=h.hexdigest()
-    c_data.update_one({'_id':dataid,"$set":{"data":msg,"hash":newhash}})
+    c_data.update_one({'_id':dataid},{"$set":{"data":msg,"hash":newhash}})
 
     data=[]
     read_data_hash=c_data.find()
