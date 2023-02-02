@@ -33,6 +33,8 @@ def signupform():
     username=request.form['username']
     password=request.form['password']
     print(username,password)
+    if len(username)==0 or len(password)==0:
+        return render_template('index.html',res1='Enter details properly')
     k={}
     k['username']=username
     k['password']=password
