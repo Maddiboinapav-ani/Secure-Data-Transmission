@@ -41,7 +41,13 @@
                               <td>{{dashboard_data[i][0]}}</td>
                               <td>{{dashboard_data[i][1]}}</td>
                               <td>{{dashboard_data[i][2]}}</td>
-                              <td>{{dashboard_data[i][3]}}</td>
+                              <td>
+                                {% if dashboard_data[i][3] == "Danger" %}
+                                    <span style="color:red">Danger</span>
+                                {% else %}
+                                    <span style="color: green">Protected</span>
+                                {% endif %}  
+                                </td>
                           </tr>
                           {%endfor%}
                       </table>
