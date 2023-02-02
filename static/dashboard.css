@@ -55,6 +55,7 @@ body {
     color: var(--dark-green-color);
     cursor: pointer;
     font-size: 16px;
+    text-decoration: none;
     user-select: none;
 }
 
@@ -165,10 +166,6 @@ h1 {
     background: var(--white-color);
 }
 
-a:link{
-    color: #175b52;
-    text-decoration: none;
-}
 a:hover {
     color: white;
     text-decoration: none;
