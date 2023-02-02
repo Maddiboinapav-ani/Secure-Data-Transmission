@@ -80,7 +80,7 @@ def senderform():
     k['username']=session['username']
     k['receiver']=receiver
     k['data']=data
-    h.update(data)
+    h.update(data.encode('utf-8'))
     k['hash']=h.hexdigest()
     c_data.insert_one(k)
     return (render_template('sender.html',res='Data Sent and hash code - '+str(k['hash'])))
