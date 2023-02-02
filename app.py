@@ -1,6 +1,7 @@
 from flask import Flask,render_template,redirect,request,session
 from pymongo import MongoClient
 import hashlib
+from bson.objectid import ObjectId
 
 client=MongoClient('localhost',27017)
 db=client['B2']
@@ -146,16 +147,16 @@ def alterdata():
 @app.route('/alterform',methods=['GET','POST'])
 def alterform():
     dataid=request.form['dataid']
-    dataid='ObjectId("'+dataid+'")'
     msg=request.form['msg']
     print(dataid,msg)
     h=hashlib.sha1()
     h.update(msg.encode('utf-8'))
     newhash=h.hexdigest()
-    temp=c_data.find({'"_id"':dataid})
+    temp=c_data.find({'"_id"':ObjectId(dataid)})
+    print(temp)
     for i in temp:
         print(i)
-    c_data.update_one({'_id':dataid},{"$set":{"data":msg,"hash":newhash}})
+    c_data.update_one({'_id':ObjectId(dataid)},{"$set":{"data":msg,"hash":newhash}})
 
     data=[]
     read_data_hash=c_data.find()
