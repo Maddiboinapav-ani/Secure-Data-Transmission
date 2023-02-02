@@ -37,7 +37,7 @@ def signupform():
     k['username']=username
     k['password']=password
     read_data_register=c_register.find()
-    for i in read_data_register():
+    for i in read_data_register:
         if i['username']==k['username']:
             return render_template('index.html',res1='Username exist')
     c_register.insert_one(k)
