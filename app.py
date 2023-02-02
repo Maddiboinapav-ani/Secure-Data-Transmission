@@ -1,4 +1,10 @@
 from flask import Flask,render_template,redirect,request
+from pymongo import MongoClient
+
+client=MongoClient('localhost',27017)
+db=client['B2']
+c_register=db['register']
+c_data=db['data']
 
 app=Flask(__name__)
 
@@ -21,6 +27,22 @@ def receiverpage():
 @app.route('/logout')
 def logoutpage():
     return redirect('/')
+
+@app.route('/signupform',methods=['post','get'])
+def signupform():
+    username=request.form['username']
+    password=request.form['password']
+    print(username,password)
+    k={}
+    k['username']=username
+    k['password']=password
+    read_data_register=c_register.find()
+    for i in read_data_register():
+        if i['username']==k['username']:
+            return render_template('index.html',res1='Username exist')
+    c_register.insert_one(k)
+    return render_template('index.html',res='Registered User')
+
     
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=5000,debug=True)

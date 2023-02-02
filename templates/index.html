@@ -11,16 +11,18 @@
 		<input type="checkbox" id="chk" aria-hidden="true">
 
 			<div class="signup">
-				<form>
+				<form action="/signupform" method="post">
 					<label for="chk" aria-hidden="true">Sign up</label>
 					<input type="text" name="username" placeholder="User name" required="">
 					<input type="password" name="password" placeholder="Password" required="">
-					<button>Sign up</button>
+					<input type="submit" value="Sign Up" />
 				</form>
+				<span style="color:red">{{res1}}</span>
+				<span style="color: green">{{res}}</span>
 			</div>
 
 			<div class="login">
-				<form>
+				<form action="/loginform" method="post">
 					<label for="chk" aria-hidden="true">Login</label>
 					<input type="text" name="username1" placeholder="Username" required="">
 					<input type="password" name="password1" placeholder="Password" required="">
