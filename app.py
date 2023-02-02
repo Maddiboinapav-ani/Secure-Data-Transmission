@@ -152,7 +152,12 @@ def alterform():
     h.update(msg.encode('utf-8'))
     newhash=h.hexdigest()
     c_data.update_one({'_id':str(dataid)},{"$set":{"data":msg,"hash":newhash}})
-    return render_template('alter.html',res='Data altered')
+
+    data=[]
+    read_data_hash=c_data.find()
+    for i in read_data_hash:
+        data.append(i['_id'])
+    return render_template('alter.html',dashboard_data=data,l=len(data),res='Data altered')
 
 
 if __name__=="__main__":
