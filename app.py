@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,request
+from flask import Flask,render_template,redirect,request,session
 from pymongo import MongoClient
 
 client=MongoClient('localhost',27017)
@@ -7,6 +7,7 @@ c_register=db['register']
 c_data=db['data']
 
 app=Flask(__name__)
+app.secret_key='b2sacet'
 
 @app.route('/')
 def homepage():
@@ -18,7 +19,15 @@ def dashboardpage():
 
 @app.route('/sender')
 def senderpage():
-    return render_template('sender.html')
+    data=[]
+    read_data_register=c_register.find()
+    for i in read_data_register:
+        dummy=[]
+        if i['username']!=session['username']:
+            dummy.append(i['username'])
+            data.append(i['username'])
+
+    return render_template('sender.html',dashboard_data=data,l=len(data))
 
 @app.route('/receiver')
 def receiverpage():
@@ -53,7 +62,9 @@ def loginform():
     read_data_register=c_register.find()
     for i in read_data_register:
         if i['username']==username and i['password']==password:
-            return render_template('index.html',res4='valid login')
+            session['username']=username
+            return redirect('/dashboard')
+            # return render_template('index.html',res4='valid login')
     return render_template('index.html',res3='Invalid login')
 
     
