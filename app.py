@@ -41,6 +41,10 @@ def receiverpage():
             dummy.append(i['username'])
             dummy.append(i['data'])
             dummy.append(i['hash'])
+            if(i['hash']==i['rx_hash']):
+                dummy.append('Protected')
+            else:
+                dummy.append('Danger')
             data.append(dummy)
 
     return render_template('receiver.html',dashboard_data=data,l=len(data))
@@ -107,6 +111,7 @@ def senderform():
     h=hashlib.sha1()
     h.update(data.encode('utf-8'))
     k['hash']=h.hexdigest()
+    k['rx_hash']=k['hash']
     read_data_hash=c_data.find()
     for i in read_data_hash:
         if(k['hash']==i['hash'] and i['username']==session['username'] and i['receiver']==k['receiver']):
