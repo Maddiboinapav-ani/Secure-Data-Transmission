@@ -146,12 +146,13 @@ def alterdata():
 @app.route('/alterform',methods=['GET','POST'])
 def alterform():
     dataid=request.form['dataid']
+    dataid='ObjectId("'+dataid+'")'
     msg=request.form['msg']
     print(dataid,msg)
     h=hashlib.sha1()
     h.update(msg.encode('utf-8'))
     newhash=h.hexdigest()
-    c_data.update_one({'_id':str(dataid)},{"$set":{"data":msg,"hash":newhash}})
+    c_data.update_one({'_id':dataid,"$set":{"data":msg,"hash":newhash}})
 
     data=[]
     read_data_hash=c_data.find()
