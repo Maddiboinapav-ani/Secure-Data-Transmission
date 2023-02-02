@@ -129,5 +129,14 @@ def senderform():
             data.append(i['username'])
     return (render_template('sender.html',dashboard_data=data,l=len(data),res='Data Sent and hash code - '+str(k['hash'])))
 
+@app.route('/alter',methods=['GET','POST'])
+def alterdata():
+    data=[]
+    read_data_hash=c_data.find()
+    for i in read_data_hash:
+        data.append(i)
+    return data
+
+
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=5000,debug=True)
