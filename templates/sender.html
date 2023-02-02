@@ -23,26 +23,29 @@
             </nav>
             <article>
                 <div class="content">
-                    <form action="/senderform" method="post">
-                        <center><h1>Send Data</h1></center> <br/>
+                    <div class="container col-md-4">
+                        <form action="/senderform" method="post">
+                            <center><h1>Send Data</h1></center> <br/>
 
-                        <div class="form-group">
-                            <label>Enter Data to secure:</label> <br/>
-                            <input type="textarea" class="form-control" name="data" placeholder="Enter Data" required="">
-                        </div>
+                            <div class="form-group">
+                                <label>Enter Data to secure:</label> <br/>
+                                <input type="textarea" class="form-control" name="data" placeholder="Enter Data" required="">
+                            </div>
                         
-                        <div class="form-group">
-                            <label>Select to whom you want to transfer</label><br/>
-                            <select class="form-control" id="receiver" name='receiver' required="">
-                                {%for i in range(0, l)%}
-                                    <option>{{dashboard_data[i]}}</option>
-                                {%endfor%}
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn-primary" type="submit">Send Data</button>
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <label>Select to whom you want to transfer</label><br/>
+                                <select class="form-control" id="receiver" name='receiver' required="">
+                                    {%for i in range(0, l)%}
+                                        <option>{{dashboard_data[i]}}</option>
+                                    {%endfor%}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn-primary" type="submit">Send Data</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </article>
         </div>
