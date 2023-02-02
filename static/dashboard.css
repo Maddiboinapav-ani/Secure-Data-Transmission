@@ -166,6 +166,10 @@ h1 {
     background: var(--white-color);
 }
 
+a {
+    text-decoration: none;
+}
+
 a:hover {
     color: white;
     text-decoration: none;
