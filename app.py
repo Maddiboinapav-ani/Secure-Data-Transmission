@@ -139,8 +139,9 @@ def alterdata():
     data=[]
     read_data_hash=c_data.find()
     for i in read_data_hash:
-        data.append(i)
-    return str(data)
+        data.append(i['_id'])
+
+    return render_template('alter.html',dashboard_data=data,l=len(data))
 
 
 if __name__=="__main__":
