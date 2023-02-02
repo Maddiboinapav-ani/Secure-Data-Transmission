@@ -2,8 +2,6 @@ from flask import Flask,render_template,redirect,request,session
 from pymongo import MongoClient
 import hashlib
 
-h=hashlib.sha1()
-
 client=MongoClient('localhost',27017)
 db=client['B2']
 c_register=db['register']
@@ -80,6 +78,7 @@ def senderform():
     k['username']=session['username']
     k['receiver']=receiver
     k['data']=data
+    h=hashlib.sha1()
     h.update(data.encode('utf-8'))
     k['hash']=h.hexdigest()
     read_data_hash=c_data.find()
