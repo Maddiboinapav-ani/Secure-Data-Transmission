@@ -84,7 +84,14 @@ def senderform():
     read_data_hash=c_data.find()
     for i in read_data_hash:
         if(k['hash']==i['hash'] and i['username']==session['username'] and i['receiver']==k['receiver']):
-            return (render_template('sender.html',dashboard_data=data,l=len(data),res1='You have already sent'))
+            data1=[]
+            read_data_register=c_register.find()
+            for i in read_data_register:
+                dummy=[]
+                if i['username']!=session['username']:
+                    dummy.append(i['username'])
+                    data1.append(i['username'])
+            return (render_template('sender.html',dashboard_data=data1,l=len(data1),res1='You have already sent'))
 
     c_data.insert_one(k)
     data=[]
