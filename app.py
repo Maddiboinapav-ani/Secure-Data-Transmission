@@ -47,8 +47,8 @@ def signupform():
 
 @app.route('/loginform',methods=['post','get'])
 def loginform():
-    username=request.form['username']
-    password=request.form['password']
+    username=request.form['username1']
+    password=request.form['password1']
     print(username,password)
     read_data_register=c_register.find()
     for i in read_data_register:
