@@ -45,6 +45,17 @@ def signupform():
     c_register.insert_one(k)
     return render_template('index.html',res='Registered User')
 
+@app.route('/loginform',methods=['post','get'])
+def loginform():
+    username=request.form['username']
+    password=request.form['password']
+    print(username,password)
+    read_data_register=c_register.find()
+    for i in read_data_register:
+        if i['username']==username and i['password']==password:
+            return render_template('index.html',res='valid login')
+    return render_template('index.html',res1='Invalid login')
+
     
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=5000,debug=True)

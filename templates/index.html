@@ -8,7 +8,7 @@
 <style>
 input[type=button], input[type=submit], input[type=reset] {
   align-content: center;
-  background-color: blueviolet;
+  background-color: rgb(53, 14, 228);
   border: none;
   color: white;
   padding: 20px 20px;
@@ -40,7 +40,9 @@ input[type=button], input[type=submit], input[type=reset] {
 					<label for="chk" aria-hidden="true">Login</label>
 					<input type="text" name="username1" placeholder="Username" required="">
 					<input type="password" name="password1" placeholder="Password" required="">
-					<button>Login</button>
+					<button type="submit">Login</button>
+					<center><span style="color:red">{{res1}}</span></center>
+					<center><span style="color: green">{{res}}</span></center>
 				</form>
 			</div>
 	</div>
