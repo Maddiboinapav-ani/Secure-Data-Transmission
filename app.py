@@ -35,6 +35,7 @@ def receiverpage():
 
 @app.route('/logout')
 def logoutpage():
+    session['username']=None
     return redirect('/')
 
 @app.route('/signupform',methods=['post','get'])

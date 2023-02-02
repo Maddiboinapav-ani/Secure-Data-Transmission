@@ -4,7 +4,10 @@
 	<title>Secure Data Transmission using AWS</title>
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='dashboard.css')}}"
 	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- <div class="dashboard">   -->
@@ -23,13 +26,20 @@
                 <div class="content">
                     <form action="/senderform" method="post">
                         <label for="chk" aria-hidden="true">Send Data</label>
-                        <input type="text" name="data" placeholder="Enter Data" required="">
+                        <div class="form-group">
+                            <input type="text" name="data" placeholder="Enter Data" required="">
+                        </div>
+                        
+                        <div class="form-group">
                         <select class="form-control" id="receiver" name='receiver' required="">
                             {%for i in range(0, l)%}
                             <option>{{dashboard_data[i][0]}}</option>
                             {%endfor%}
                         </select>
+                        </div>
+                        <div class="form-group">
                         <button type="submit">Send Data</button>
+                        </div>
                     </form>
                 </div>
             </article>
