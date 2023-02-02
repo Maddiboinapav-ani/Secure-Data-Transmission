@@ -32,7 +32,18 @@ def senderpage():
 
 @app.route('/receiver')
 def receiverpage():
-    return render_template('receiver.html')
+    data=[]
+    read_data_hash=c_data.find()
+    for i in read_data_hash:
+        username=session['username']
+        if(i['receiver']==username):
+            dummy=[]
+            dummy.append(i['username'])
+            dummy.append(i['data'])
+            dummy.append(i['hash'])
+            data.append(dummy)
+
+    return render_template('receiver.html',dashboard_data=data,l=len(data))
 
 @app.route('/logout')
 def logoutpage():
